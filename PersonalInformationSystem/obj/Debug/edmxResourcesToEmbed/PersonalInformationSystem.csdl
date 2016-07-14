@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonalInformationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="StudentClass">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentClass" FromRole="StudentClass" ToRole="StudentQualification" />
+    <NavigationProperty Name="StudentSubjects" Relationship="Self.FK_StudentSubject_StudentClass" FromRole="StudentClass" ToRole="StudentSubject" />
+  </EntityType>
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EnrolledDate" Type="DateTime" Precision="3" />
+    <Property Name="ComputerLiterate" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentInfo" FromRole="StudentInfo" ToRole="StudentQualification" />
+    <NavigationProperty Name="StudentReferences" Relationship="Self.FK_StudentReference_StudentInfo" FromRole="StudentInfo" ToRole="StudentReference" />
+  </EntityType>
+  <EntityType Name="StudentQualification">
+    <Key>
+      <PropertyRef Name="QualificationId" />
+    </Key>
+    <Property Name="QualificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="Int32" Nullable="false" />
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="Board" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Percentage" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PassedYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="StudentClass" Relationship="Self.FK_StudentQualification_StudentClass" FromRole="StudentQualification" ToRole="StudentClass" />
+    <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentQualification_StudentInfo" FromRole="StudentQualification" ToRole="StudentInfo" />
+    <NavigationProperty Name="StudentSubject" Relationship="Self.FK_StudentQualification_StudentSubject" FromRole="StudentQualification" ToRole="StudentSubject" />
+  </EntityType>
+  <EntityType Name="StudentReference">
+    <Key>
+      <PropertyRef Name="ReferenceId" />
+    </Key>
+    <Property Name="ReferenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="ReferenceThrough" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentReference_StudentInfo" FromRole="StudentReference" ToRole="StudentInfo" />
+  </EntityType>
+  <EntityType Name="StudentSubject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="Int32" Nullable="false" />
+    <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="StudentClass" Relationship="Self.FK_StudentSubject_StudentClass" FromRole="StudentSubject" ToRole="StudentClass" />
+    <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentSubject" FromRole="StudentSubject" ToRole="StudentQualification" />
+  </EntityType>
+  <Association Name="FK_StudentQualification_StudentClass">
+    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
+    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentClass">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentQualification">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSubject_StudentClass">
+    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentClass">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentSubject">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentQualification_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentQualification">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentReference_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+    <End Role="StudentReference" Type="Self.StudentReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentReference">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentQualification_StudentSubject">
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="1" />
+    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentSubject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="StudentQualification">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonalInformationSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="StudentClasses" EntityType="Self.StudentClass" />
+    <EntitySet Name="StudentInfoes" EntityType="Self.StudentInfo" />
+    <EntitySet Name="StudentQualifications" EntityType="Self.StudentQualification" />
+    <EntitySet Name="StudentReferences" EntityType="Self.StudentReference" />
+    <EntitySet Name="StudentSubjects" EntityType="Self.StudentSubject" />
+    <AssociationSet Name="FK_StudentQualification_StudentClass" Association="Self.FK_StudentQualification_StudentClass">
+      <End Role="StudentClass" EntitySet="StudentClasses" />
+      <End Role="StudentQualification" EntitySet="StudentQualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSubject_StudentClass" Association="Self.FK_StudentSubject_StudentClass">
+      <End Role="StudentClass" EntitySet="StudentClasses" />
+      <End Role="StudentSubject" EntitySet="StudentSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentQualification_StudentInfo" Association="Self.FK_StudentQualification_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="StudentQualification" EntitySet="StudentQualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentReference_StudentInfo" Association="Self.FK_StudentReference_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="StudentReference" EntitySet="StudentReferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentQualification_StudentSubject" Association="Self.FK_StudentQualification_StudentSubject">
+      <End Role="StudentSubject" EntitySet="StudentSubjects" />
+      <End Role="StudentQualification" EntitySet="StudentQualifications" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

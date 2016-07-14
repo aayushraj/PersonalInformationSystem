@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="781965c546b44e2683e066b8cc1afb6c" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentClass" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentInfo" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentQualification" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentReference" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PersonalInformationSystemModel.StudentSubject" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentClass" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentSubject_StudentClass" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentReference_StudentInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentSubject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

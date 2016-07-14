@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonalInformationSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="StudentClass">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="EnrolledDate" Type="datetime" />
+    <Property Name="ComputerLiterate" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentQualification">
+    <Key>
+      <PropertyRef Name="QualificationId" />
+    </Key>
+    <Property Name="QualificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassId" Type="int" Nullable="false" />
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="Board" Type="nvarchar" MaxLength="50" />
+    <Property Name="Percentage" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="PassedYear" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentReference">
+    <Key>
+      <PropertyRef Name="ReferenceId" />
+    </Key>
+    <Property Name="ReferenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="ReferenceThrough" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StudentSubject">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassId" Type="int" Nullable="false" />
+    <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedOn" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_StudentQualification_StudentClass">
+    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
+    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentClass">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentQualification">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentQualification_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentQualification">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentQualification_StudentSubject">
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="1" />
+    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentSubject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="StudentQualification">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentReference_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+    <End Role="StudentReference" Type="Self.StudentReference" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentReference">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentSubject_StudentClass">
+    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
+    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentClass">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="StudentSubject">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonalInformationSystemModelStoreContainer">
+    <EntitySet Name="StudentClass" EntityType="Self.StudentClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentQualification" EntityType="Self.StudentQualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentReference" EntityType="Self.StudentReference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentSubject" EntityType="Self.StudentSubject" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_StudentQualification_StudentClass" Association="Self.FK_StudentQualification_StudentClass">
+      <End Role="StudentClass" EntitySet="StudentClass" />
+      <End Role="StudentQualification" EntitySet="StudentQualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentQualification_StudentInfo" Association="Self.FK_StudentQualification_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
+      <End Role="StudentQualification" EntitySet="StudentQualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentQualification_StudentSubject" Association="Self.FK_StudentQualification_StudentSubject">
+      <End Role="StudentSubject" EntitySet="StudentSubject" />
+      <End Role="StudentQualification" EntitySet="StudentQualification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentReference_StudentInfo" Association="Self.FK_StudentReference_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
+      <End Role="StudentReference" EntitySet="StudentReference" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSubject_StudentClass" Association="Self.FK_StudentSubject_StudentClass">
+      <End Role="StudentClass" EntitySet="StudentClass" />
+      <End Role="StudentSubject" EntitySet="StudentSubject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
