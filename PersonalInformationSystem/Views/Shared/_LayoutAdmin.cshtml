@@ -31,6 +31,7 @@
                     <img src="@Url.Content("~/Content/")assets/img/logo.png" alt="" />
                 </a>
             </div>
+
             <!-- end navbar-header -->
             <!-- navbar-top-links -->
             <ul class="nav navbar-top-links navbar-right">
@@ -309,7 +310,7 @@
                                 <a href="panels-wells.html">Panels and Wells</a>
                             </li>
                             <li>
-                                <a href="buttons.html">Buttons</a>
+                                <a href="buttons.html"></a>
                             </li>
                             <li>
                                 <a href="notifications.html">Notifications</a>
@@ -373,6 +374,8 @@
         <!-- end navbar side -->
         <!--  page-wrapper -->
         <div id="page-wrapper">
+            
+           
 
             <div class="row">
                 <!-- Page Header -->
@@ -390,15 +393,13 @@
                         <i class="fa  fa-pencil"></i><b>&nbsp;2,000 </b>Support Tickets Pending to Answere. nbsp;
                     </div>
                 </div>
+
+               
                 <!--end  Welcome -->
             </div>
 
-
-           
-
-            
-
-                </div>
+            @RenderBody()
+          </div>
 
                 
         
@@ -418,9 +419,8 @@
 
 
 
-    <div>
-        @RenderBody()
-    </div>
+    
+   
 
 </body>
 </html>

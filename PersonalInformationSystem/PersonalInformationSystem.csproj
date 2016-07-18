@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -160,17 +165,30 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Class.cs">
+      <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentInfoController.cs" />
+    <Compile Include="CourseInfo.cs">
+      <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CourseInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\StudentClassModel.cs" />
+    <Compile Include="Models\StudentCourseDetailModel.cs" />
     <Compile Include="Models\StudentInfoModel.cs" />
     <Compile Include="Models\StudentQualificationModel.cs" />
     <Compile Include="Models\StudentSubjectModel.cs" />
+    <Compile Include="Payment.cs">
+      <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonalInformationSystem.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,8 +205,10 @@
       <DependentUpon>PersonalInformationSystem.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\StudentInfoProvider.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="StudentClass.cs">
+    <Compile Include="Models\StudentReferenceModel.cs" />
+    <Compile Include="StudentCourseDetail.cs">
       <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="StudentInfo.cs">
@@ -200,7 +220,6 @@
     <Compile Include="StudentReference.cs">
       <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentReferenceModel.cs" />
     <Compile Include="StudentSubject.cs">
       <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
     </Compile>
@@ -231,6 +250,7 @@
     <Content Include="PersonalInformationSystem.edmx.diagram">
       <DependentUpon>PersonalInformationSystem.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -243,7 +263,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -269,6 +291,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\StudentInfo\Create.cshtml" />
+    <Content Include="Views\StudentInfo\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

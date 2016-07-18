@@ -1,17 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PersonalInformationSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="StudentClass">
+<Schema Namespace="PersonalInformationSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Class">
     <Key>
       <PropertyRef Name="ClassId" />
     </Key>
     <Property Name="ClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedOn" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedBy" Type="int" />
     <Property Name="ModifiedOn" Type="datetime" />
-    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedBy" Type="int" />
     <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="CourseInfo">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CourseDesc" Type="text" />
+    <Property Name="CoourseDuration" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Facilitator" Type="nvarchar" MaxLength="50" />
+    <Property Name="CourseAmount" Type="money" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" />
+    <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="DueAmount" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="PaidBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ReceivedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="text" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="Modifiedon" Type="datetime" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="StudentCourseDetails">
+    <Key>
+      <PropertyRef Name="StudentCourseDetailsId" />
+    </Key>
+    <Property Name="StudentCourseDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="EnrolledDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="int" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="DeletedBy" Type="int" />
+    <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="StudentInfo">
     <Key>
@@ -21,19 +76,21 @@
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
-    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateOfBirth" Type="date" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
     <Property Name="Country" Type="nvarchar" MaxLength="50" />
-    <Property Name="Gender" Type="bit" />
+    <Property Name="Gender" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
     <Property Name="EnrolledDate" Type="datetime" />
     <Property Name="ComputerLiterate" Type="bit" />
     <Property Name="CreatedOn" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedBy" Type="int" />
     <Property Name="ModifiedOn" Type="datetime" />
-    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedBy" Type="int" />
     <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="StudentQualification">
     <Key>
@@ -48,10 +105,10 @@
     <Property Name="PassedYear" Type="nvarchar" MaxLength="50" />
     <Property Name="Status" Type="bit" />
     <Property Name="CreatedOn" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedBy" Type="int" />
     <Property Name="ModifiedOn" Type="datetime" />
-    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedBy" Type="int" />
     <Property Name="DeletedOn" Type="datetime" />
   </EntityType>
   <EntityType Name="StudentReference">
@@ -62,11 +119,12 @@
     <Property Name="StudentId" Type="int" Nullable="false" />
     <Property Name="ReferenceThrough" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedOn" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedBy" Type="int" />
     <Property Name="ModifiedOn" Type="datetime" />
-    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedBy" Type="int" />
     <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
   <EntityType Name="StudentSubject">
     <Key>
@@ -76,17 +134,54 @@
     <Property Name="ClassId" Type="int" Nullable="false" />
     <Property Name="SubjectName" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedOn" Type="datetime" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
-    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="ModifiedBy" Type="int" />
     <Property Name="ModifiedOn" Type="datetime" />
-    <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeletedBy" Type="int" />
     <Property Name="DeletedOn" Type="datetime" />
+    <Property Name="Status" Type="bit" />
   </EntityType>
+  <Association Name="FK_payment_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentCourseDetails_CourseInfo">
+    <End Role="CourseInfo" Type="Self.CourseInfo" Multiplicity="1" />
+    <End Role="StudentCourseDetails" Type="Self.StudentCourseDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseInfo">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="StudentCourseDetails">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentCourseDetails_StudentInfo">
+    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
+    <End Role="StudentCourseDetails" Type="Self.StudentCourseDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentCourseDetails">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StudentQualification_StudentClass">
-    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
     <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="StudentClass">
+      <Principal Role="Class">
         <PropertyRef Name="ClassId" />
       </Principal>
       <Dependent Role="StudentQualification">
@@ -131,10 +226,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_StudentSubject_StudentClass">
-    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
+    <End Role="Class" Type="Self.Class" Multiplicity="1" />
     <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="StudentClass">
+      <Principal Role="Class">
         <PropertyRef Name="ClassId" />
       </Principal>
       <Dependent Role="StudentSubject">
@@ -143,13 +238,28 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="PersonalInformationSystemModelStoreContainer">
-    <EntitySet Name="StudentClass" EntityType="Self.StudentClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Class" EntityType="Self.Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CourseInfo" EntityType="Self.CourseInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentCourseDetails" EntityType="Self.StudentCourseDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentInfo" EntityType="Self.StudentInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentQualification" EntityType="Self.StudentQualification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentReference" EntityType="Self.StudentReference" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentSubject" EntityType="Self.StudentSubject" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_payment_StudentInfo" Association="Self.FK_payment_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentCourseDetails_CourseInfo" Association="Self.FK_StudentCourseDetails_CourseInfo">
+      <End Role="CourseInfo" EntitySet="CourseInfo" />
+      <End Role="StudentCourseDetails" EntitySet="StudentCourseDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentCourseDetails_StudentInfo" Association="Self.FK_StudentCourseDetails_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
+      <End Role="StudentCourseDetails" EntitySet="StudentCourseDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_StudentQualification_StudentClass" Association="Self.FK_StudentQualification_StudentClass">
-      <End Role="StudentClass" EntitySet="StudentClass" />
+      <End Role="Class" EntitySet="Class" />
       <End Role="StudentQualification" EntitySet="StudentQualification" />
     </AssociationSet>
     <AssociationSet Name="FK_StudentQualification_StudentInfo" Association="Self.FK_StudentQualification_StudentInfo">
@@ -165,7 +275,7 @@
       <End Role="StudentReference" EntitySet="StudentReference" />
     </AssociationSet>
     <AssociationSet Name="FK_StudentSubject_StudentClass" Association="Self.FK_StudentSubject_StudentClass">
-      <End Role="StudentClass" EntitySet="StudentClass" />
+      <End Role="Class" EntitySet="Class" />
       <End Role="StudentSubject" EntitySet="StudentSubject" />
     </AssociationSet>
   </EntityContainer>

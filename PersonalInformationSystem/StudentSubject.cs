@@ -23,13 +23,14 @@ namespace PersonalInformationSystem
         public int ClassId { get; set; }
         public string SubjectName { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string CreatedBy { get; set; }
-        public string ModifiedBy { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<int> ModifiedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public string DeletedBy { get; set; }
+        public Nullable<int> DeletedBy { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
+        public Nullable<bool> Status { get; set; }
     
-        public virtual StudentClass StudentClass { get; set; }
+        public virtual Class Class { get; set; }
         public virtual ICollection<StudentQualification> StudentQualifications { get; set; }
     }
 }

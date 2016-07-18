@@ -1,19 +1,120 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PersonalInformationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="StudentClass">
+  <EntityContainer Name="PersonalInformationSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Classes" EntityType="PersonalInformationSystemModel.Class" />
+    <EntitySet Name="CourseInfoes" EntityType="PersonalInformationSystemModel.CourseInfo" />
+    <EntitySet Name="Payments" EntityType="PersonalInformationSystemModel.Payment" />
+    <EntitySet Name="StudentCourseDetails" EntityType="PersonalInformationSystemModel.StudentCourseDetail" />
+    <EntitySet Name="StudentInfoes" EntityType="PersonalInformationSystemModel.StudentInfo" />
+    <EntitySet Name="StudentQualifications" EntityType="PersonalInformationSystemModel.StudentQualification" />
+    <EntitySet Name="StudentReferences" EntityType="PersonalInformationSystemModel.StudentReference" />
+    <EntitySet Name="StudentSubjects" EntityType="PersonalInformationSystemModel.StudentSubject" />
+    <AssociationSet Name="FK_StudentQualification_StudentClass" Association="PersonalInformationSystemModel.FK_StudentQualification_StudentClass">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="StudentQualification" EntitySet="StudentQualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentSubject_StudentClass" Association="PersonalInformationSystemModel.FK_StudentSubject_StudentClass">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="StudentSubject" EntitySet="StudentSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentCourseDetails_CourseInfo" Association="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo">
+      <End Role="CourseInfo" EntitySet="CourseInfoes" />
+      <End Role="StudentCourseDetail" EntitySet="StudentCourseDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_payment_StudentInfo" Association="PersonalInformationSystemModel.FK_payment_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentCourseDetails_StudentInfo" Association="PersonalInformationSystemModel.FK_StudentCourseDetails_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="StudentCourseDetail" EntitySet="StudentCourseDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentQualification_StudentInfo" Association="PersonalInformationSystemModel.FK_StudentQualification_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="StudentQualification" EntitySet="StudentQualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentReference_StudentInfo" Association="PersonalInformationSystemModel.FK_StudentReference_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="StudentReference" EntitySet="StudentReferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentQualification_StudentSubject" Association="PersonalInformationSystemModel.FK_StudentQualification_StudentSubject">
+      <End Role="StudentSubject" EntitySet="StudentSubjects" />
+      <End Role="StudentQualification" EntitySet="StudentQualifications" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Class">
     <Key>
       <PropertyRef Name="ClassId" />
     </Key>
     <Property Name="ClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedBy" Type="Int32" />
     <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentClass" FromRole="StudentClass" ToRole="StudentQualification" />
-    <NavigationProperty Name="StudentSubjects" Relationship="Self.FK_StudentSubject_StudentClass" FromRole="StudentClass" ToRole="StudentSubject" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="StudentQualifications" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentClass" FromRole="Class" ToRole="StudentQualification" />
+    <NavigationProperty Name="StudentSubjects" Relationship="PersonalInformationSystemModel.FK_StudentSubject_StudentClass" FromRole="Class" ToRole="StudentSubject" />
+  </EntityType>
+  <EntityType Name="CourseInfo">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CourseDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CoourseDuration" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Facilitator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CourseAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="StudentCourseDetails" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" FromRole="CourseInfo" ToRole="StudentCourseDetail" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaidAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DueAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PaidBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReceivedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="Modifiedon" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="StudentInfo" Relationship="PersonalInformationSystemModel.FK_payment_StudentInfo" FromRole="Payment" ToRole="StudentInfo" />
+  </EntityType>
+  <EntityType Name="StudentCourseDetail">
+    <Key>
+      <PropertyRef Name="StudentCourseDetailsId" />
+    </Key>
+    <Property Name="StudentCourseDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="EnrolledDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="Int32" />
+    <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="CourseInfo" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" FromRole="StudentCourseDetail" ToRole="CourseInfo" />
+    <NavigationProperty Name="StudentInfo" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_StudentInfo" FromRole="StudentCourseDetail" ToRole="StudentInfo" />
   </EntityType>
   <EntityType Name="StudentInfo">
     <Key>
@@ -23,21 +124,25 @@
     <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Gender" Type="Int32" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="EnrolledDate" Type="DateTime" Precision="3" />
     <Property Name="ComputerLiterate" Type="Boolean" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedBy" Type="Int32" />
     <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentInfo" FromRole="StudentInfo" ToRole="StudentQualification" />
-    <NavigationProperty Name="StudentReferences" Relationship="Self.FK_StudentReference_StudentInfo" FromRole="StudentInfo" ToRole="StudentReference" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Payments" Relationship="PersonalInformationSystemModel.FK_payment_StudentInfo" FromRole="StudentInfo" ToRole="Payment" />
+    <NavigationProperty Name="StudentCourseDetails" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_StudentInfo" FromRole="StudentInfo" ToRole="StudentCourseDetail" />
+    <NavigationProperty Name="StudentQualifications" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentInfo" FromRole="StudentInfo" ToRole="StudentQualification" />
+    <NavigationProperty Name="StudentReferences" Relationship="PersonalInformationSystemModel.FK_StudentReference_StudentInfo" FromRole="StudentInfo" ToRole="StudentReference" />
   </EntityType>
   <EntityType Name="StudentQualification">
     <Key>
@@ -52,14 +157,14 @@
     <Property Name="PassedYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Status" Type="Boolean" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedBy" Type="Int32" />
     <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="StudentClass" Relationship="Self.FK_StudentQualification_StudentClass" FromRole="StudentQualification" ToRole="StudentClass" />
-    <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentQualification_StudentInfo" FromRole="StudentQualification" ToRole="StudentInfo" />
-    <NavigationProperty Name="StudentSubject" Relationship="Self.FK_StudentQualification_StudentSubject" FromRole="StudentQualification" ToRole="StudentSubject" />
+    <NavigationProperty Name="Class" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentClass" FromRole="StudentQualification" ToRole="Class" />
+    <NavigationProperty Name="StudentInfo" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentInfo" FromRole="StudentQualification" ToRole="StudentInfo" />
+    <NavigationProperty Name="StudentSubject" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentSubject" FromRole="StudentQualification" ToRole="StudentSubject" />
   </EntityType>
   <EntityType Name="StudentReference">
     <Key>
@@ -69,12 +174,13 @@
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <Property Name="ReferenceThrough" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedBy" Type="Int32" />
     <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="StudentInfo" Relationship="Self.FK_StudentReference_StudentInfo" FromRole="StudentReference" ToRole="StudentInfo" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="StudentInfo" Relationship="PersonalInformationSystemModel.FK_StudentReference_StudentInfo" FromRole="StudentReference" ToRole="StudentInfo" />
   </EntityType>
   <EntityType Name="StudentSubject">
     <Key>
@@ -84,19 +190,20 @@
     <Property Name="ClassId" Type="Int32" Nullable="false" />
     <Property Name="SubjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-    <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeletedBy" Type="Int32" />
     <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="StudentClass" Relationship="Self.FK_StudentSubject_StudentClass" FromRole="StudentSubject" ToRole="StudentClass" />
-    <NavigationProperty Name="StudentQualifications" Relationship="Self.FK_StudentQualification_StudentSubject" FromRole="StudentSubject" ToRole="StudentQualification" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Class" Relationship="PersonalInformationSystemModel.FK_StudentSubject_StudentClass" FromRole="StudentSubject" ToRole="Class" />
+    <NavigationProperty Name="StudentQualifications" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentSubject" FromRole="StudentSubject" ToRole="StudentQualification" />
   </EntityType>
   <Association Name="FK_StudentQualification_StudentClass">
-    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
-    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <End Type="PersonalInformationSystemModel.Class" Role="Class" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentQualification" Role="StudentQualification" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="StudentClass">
+      <Principal Role="Class">
         <PropertyRef Name="ClassId" />
       </Principal>
       <Dependent Role="StudentQualification">
@@ -105,10 +212,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_StudentSubject_StudentClass">
-    <End Role="StudentClass" Type="Self.StudentClass" Multiplicity="1" />
-    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="*" />
+    <End Type="PersonalInformationSystemModel.Class" Role="Class" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentSubject" Role="StudentSubject" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="StudentClass">
+      <Principal Role="Class">
         <PropertyRef Name="ClassId" />
       </Principal>
       <Dependent Role="StudentSubject">
@@ -116,9 +223,45 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StudentCourseDetails_CourseInfo">
+    <End Type="PersonalInformationSystemModel.CourseInfo" Role="CourseInfo" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentCourseDetail" Role="StudentCourseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourseInfo">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="StudentCourseDetail">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_payment_StudentInfo">
+    <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+    <End Type="PersonalInformationSystemModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentCourseDetails_StudentInfo">
+    <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentCourseDetail" Role="StudentCourseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="StudentCourseDetail">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StudentQualification_StudentInfo">
-    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
-    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentQualification" Role="StudentQualification" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="StudentInfo">
         <PropertyRef Name="StudentId" />
@@ -129,8 +272,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_StudentReference_StudentInfo">
-    <End Role="StudentInfo" Type="Self.StudentInfo" Multiplicity="1" />
-    <End Role="StudentReference" Type="Self.StudentReference" Multiplicity="*" />
+    <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentReference" Role="StudentReference" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="StudentInfo">
         <PropertyRef Name="StudentId" />
@@ -141,8 +284,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_StudentQualification_StudentSubject">
-    <End Role="StudentSubject" Type="Self.StudentSubject" Multiplicity="1" />
-    <End Role="StudentQualification" Type="Self.StudentQualification" Multiplicity="*" />
+    <End Type="PersonalInformationSystemModel.StudentSubject" Role="StudentSubject" Multiplicity="1" />
+    <End Type="PersonalInformationSystemModel.StudentQualification" Role="StudentQualification" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="StudentSubject">
         <PropertyRef Name="SubjectId" />
@@ -152,31 +295,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PersonalInformationSystemEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="StudentClasses" EntityType="Self.StudentClass" />
-    <EntitySet Name="StudentInfoes" EntityType="Self.StudentInfo" />
-    <EntitySet Name="StudentQualifications" EntityType="Self.StudentQualification" />
-    <EntitySet Name="StudentReferences" EntityType="Self.StudentReference" />
-    <EntitySet Name="StudentSubjects" EntityType="Self.StudentSubject" />
-    <AssociationSet Name="FK_StudentQualification_StudentClass" Association="Self.FK_StudentQualification_StudentClass">
-      <End Role="StudentClass" EntitySet="StudentClasses" />
-      <End Role="StudentQualification" EntitySet="StudentQualifications" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentSubject_StudentClass" Association="Self.FK_StudentSubject_StudentClass">
-      <End Role="StudentClass" EntitySet="StudentClasses" />
-      <End Role="StudentSubject" EntitySet="StudentSubjects" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentQualification_StudentInfo" Association="Self.FK_StudentQualification_StudentInfo">
-      <End Role="StudentInfo" EntitySet="StudentInfoes" />
-      <End Role="StudentQualification" EntitySet="StudentQualifications" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentReference_StudentInfo" Association="Self.FK_StudentReference_StudentInfo">
-      <End Role="StudentInfo" EntitySet="StudentInfoes" />
-      <End Role="StudentReference" EntitySet="StudentReferences" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentQualification_StudentSubject" Association="Self.FK_StudentQualification_StudentSubject">
-      <End Role="StudentSubject" EntitySet="StudentSubjects" />
-      <End Role="StudentQualification" EntitySet="StudentQualifications" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>
