@@ -46,6 +46,11 @@ margin-bottom: 0px
     height: 15px!important;
 }
 
+.registerbtn{
+    margin-top:40px;
+}
+
+
 /* side-menu section */
 .nav > li > a:hover, .nav > li > a:focus {
     background-color:rgba(74, 72, 126, 0);
@@ -60,7 +65,7 @@ color: #FFFFFF;
 padding: 20px 15px;
 }
 #side-menu {
-    background-color:#12354e;
+    background-color:#04B173;
 }
 
  #side-menu a {
@@ -69,7 +74,7 @@ padding: 20px 15px;
            height: 55px;
         }
         .selected {
-            background-color:#ad2607;
+            background-color:rgb(83, 163, 163);
         }
 /* back colors */
         .blue {
@@ -92,7 +97,7 @@ padding: 20px 15px;
 /* tap nvbar Section */
 
 #navbar {
-    background-color:#1a8449;
+    background-color:rgb(83, 163, 163);
 }
 
 .navbar-brand {
