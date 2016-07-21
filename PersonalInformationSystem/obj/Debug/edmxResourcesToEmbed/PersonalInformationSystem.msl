@@ -19,6 +19,7 @@
     <EntitySetMapping Name="CourseInfoes">
       <EntityTypeMapping TypeName="PersonalInformationSystemModel.CourseInfo">
         <MappingFragment StoreEntitySet="CourseInfo">
+          <ScalarProperty Name="CourseDuration" ColumnName="CourseDuration" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
           <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
@@ -28,7 +29,6 @@
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="CourseAmount" ColumnName="CourseAmount" />
           <ScalarProperty Name="Facilitator" ColumnName="Facilitator" />
-          <ScalarProperty Name="CoourseDuration" ColumnName="CoourseDuration" />
           <ScalarProperty Name="CourseDesc" ColumnName="CourseDesc" />
           <ScalarProperty Name="CourseName" ColumnName="CourseName" />
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
@@ -76,6 +76,8 @@
     <EntitySetMapping Name="StudentInfoes">
       <EntityTypeMapping TypeName="PersonalInformationSystemModel.StudentInfo">
         <MappingFragment StoreEntitySet="StudentInfo">
+          <ScalarProperty Name="ResidenceNo" ColumnName="ResidenceNo" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
           <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />

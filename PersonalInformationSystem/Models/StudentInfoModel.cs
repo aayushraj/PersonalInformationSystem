@@ -37,5 +37,6 @@ namespace PersonalInformationSystem.Models
         public CourseInfoModel ObjCourseInfoModel { get; set; }
         public PaymentModel ObjPaymentModel { get; set; }
 
+        
     }
 }

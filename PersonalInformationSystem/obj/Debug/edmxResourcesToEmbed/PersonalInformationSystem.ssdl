@@ -21,7 +21,7 @@
     <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
     <Property Name="CourseDesc" Type="text" />
-    <Property Name="CoourseDuration" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="CourseDuration" Type="decimal" Precision="18" Scale="0" />
     <Property Name="Facilitator" Type="nvarchar" MaxLength="50" />
     <Property Name="CourseAmount" Type="money" />
     <Property Name="CreatedBy" Type="int" />
@@ -74,6 +74,7 @@
     </Key>
     <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="DateOfBirth" Type="date" />
@@ -82,6 +83,7 @@
     <Property Name="Gender" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" />
     <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResidenceNo" Type="nvarchar" MaxLength="50" />
     <Property Name="EnrolledDate" Type="datetime" />
     <Property Name="ComputerLiterate" Type="bit" />
     <Property Name="CreatedOn" Type="datetime" />

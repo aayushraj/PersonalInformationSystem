@@ -31,10 +31,6 @@
         <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentClass" />
         <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentSubject_StudentClass" />
         <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" />
-        <AssociationConnector Association="PersonalInformationSystemModel.FK_payment_StudentInfo" />
-        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentCourseDetails_StudentInfo" />
-        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentInfo" />
-        <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentReference_StudentInfo" />
         <AssociationConnector Association="PersonalInformationSystemModel.FK_StudentQualification_StudentSubject" />
       </Diagram>
     </edmx:Diagrams>

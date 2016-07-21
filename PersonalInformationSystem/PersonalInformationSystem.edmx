@@ -26,7 +26,7 @@
           <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
           <Property Name="CourseDesc" Type="text" />
-          <Property Name="CoourseDuration" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CourseDuration" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Facilitator" Type="nvarchar" MaxLength="50" />
           <Property Name="CourseAmount" Type="money" />
           <Property Name="CreatedBy" Type="int" />
@@ -79,6 +79,7 @@
           </Key>
           <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="DateOfBirth" Type="date" />
@@ -87,6 +88,7 @@
           <Property Name="Gender" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResidenceNo" Type="nvarchar" MaxLength="50" />
           <Property Name="EnrolledDate" Type="datetime" />
           <Property Name="ComputerLiterate" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
@@ -353,7 +355,7 @@
           <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CourseDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CoourseDuration" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CourseDuration" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Facilitator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CourseAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="CreatedBy" Type="Int32" />
@@ -410,6 +412,7 @@
           </Key>
           <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
@@ -417,6 +420,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidenceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EnrolledDate" Type="DateTime" Precision="3" />
           <Property Name="ComputerLiterate" Type="Boolean" />
@@ -607,6 +611,7 @@
           <EntitySetMapping Name="CourseInfoes">
             <EntityTypeMapping TypeName="PersonalInformationSystemModel.CourseInfo">
               <MappingFragment StoreEntitySet="CourseInfo">
+                <ScalarProperty Name="CourseDuration" ColumnName="CourseDuration" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
@@ -616,7 +621,6 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CourseAmount" ColumnName="CourseAmount" />
                 <ScalarProperty Name="Facilitator" ColumnName="Facilitator" />
-                <ScalarProperty Name="CoourseDuration" ColumnName="CoourseDuration" />
                 <ScalarProperty Name="CourseDesc" ColumnName="CourseDesc" />
                 <ScalarProperty Name="CourseName" ColumnName="CourseName" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
@@ -664,6 +668,8 @@
           <EntitySetMapping Name="StudentInfoes">
             <EntityTypeMapping TypeName="PersonalInformationSystemModel.StudentInfo">
               <MappingFragment StoreEntitySet="StudentInfo">
+                <ScalarProperty Name="ResidenceNo" ColumnName="ResidenceNo" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
