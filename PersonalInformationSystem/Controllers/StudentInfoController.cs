@@ -12,6 +12,8 @@ namespace PersonalInformationSystem.Controllers
     public class StudentInfoController : Controller
     {
         StudentInfoProvider pro = new StudentInfoProvider();
+        
+
         // GET: StudentInfo
         public ActionResult Index()
         {
@@ -32,8 +34,11 @@ namespace PersonalInformationSystem.Controllers
         [HttpPost]
         public ActionResult Create(StudentInfoModel model)
         {
+          
+
+            pro.Save(model);
+          
             
-                pro.Save(model);
                 return RedirectToAction("Index","Home");
             
             
