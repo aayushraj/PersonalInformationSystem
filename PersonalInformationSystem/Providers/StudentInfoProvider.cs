@@ -40,7 +40,10 @@ namespace PersonalInformationSystem.Providers
 
             entityStudentInfo.StudentId = model.StudentId;
             entityStudentInfo.FirstName = model.FirstName;
+            entityStudentInfo.MiddleName = model.MiddleName;
             entityStudentInfo.LastName = model.LastName;
+            entityStudentInfo.DateOfBirth = model.DateOfBirth;
+            entityStudentInfo.ResidenceNo = model.ResidenceNo;
             entityStudentInfo.MobileNo = model.MobileNo;
             entityStudentInfo.Address = model.Address;
             entityStudentInfo.City = model.City;
