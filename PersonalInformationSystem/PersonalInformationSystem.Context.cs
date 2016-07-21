@@ -26,12 +26,12 @@ namespace PersonalInformationSystem
         }
     
         public virtual DbSet<Class> Classes { get; set; }
-        public virtual DbSet<CourseInfo> CourseInfoes { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<StudentCourseDetail> StudentCourseDetails { get; set; }
         public virtual DbSet<StudentInfo> StudentInfoes { get; set; }
         public virtual DbSet<StudentQualification> StudentQualifications { get; set; }
         public virtual DbSet<StudentReference> StudentReferences { get; set; }
         public virtual DbSet<StudentSubject> StudentSubjects { get; set; }
+        public virtual DbSet<CourseInfo> CourseInfoes { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace PersonalInformationSystem
         public Nullable<System.DateTime> DeletedOn { get; set; }
         public Nullable<bool> Status { get; set; }
     
-        public virtual CourseInfo CourseInfo { get; set; }
         public virtual StudentInfo StudentInfo { get; set; }
+        public virtual CourseInfo CourseInfo { get; set; }
     }
 }

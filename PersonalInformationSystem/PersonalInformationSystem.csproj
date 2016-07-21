@@ -170,6 +170,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\StudentInfoController.cs" />
     <Compile Include="CourseInfo.cs">
       <DependentUpon>PersonalInformationSystem.tt</DependentUpon>
@@ -181,8 +182,8 @@
     <Compile Include="Models\CourseInfoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PaymentModel.cs" />
-    <Compile Include="Models\StudentClassModel.cs" />
-    <Compile Include="Models\StudentCourseDetailModel.cs" />
+    <Compile Include="Models\ClassModel.cs" />
+    <Compile Include="Models\StudentCourseDetailsModel.cs" />
     <Compile Include="Models\StudentInfoModel.cs" />
     <Compile Include="Models\StudentQualificationModel.cs" />
     <Compile Include="Models\StudentSubjectModel.cs" />
@@ -206,7 +207,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CourseInfoProvider.cs" />
+    <Compile Include="Providers\PaymentProvider.cs" />
+    <Compile Include="Providers\ClassProvider.cs" />
+    <Compile Include="Providers\StudentCourseDetailsProvider.cs" />
     <Compile Include="Providers\StudentInfoProvider.cs" />
+    <Compile Include="Providers\StudentQualificationProvider.cs" />
+    <Compile Include="Providers\StudentReferenceProvider.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\StudentReferenceModel.cs" />
     <Compile Include="StudentCourseDetail.cs">
@@ -297,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -17,5 +17,6 @@ namespace PersonalInformationSystem
         public int DeletedBy { get; set; }
         public DateTime DeletedOn { get; set; }
         public bool Status { get; set; }
+        public List<StudentReferenceModel> StudentReferenceModelList { get; set; }
     }
 }

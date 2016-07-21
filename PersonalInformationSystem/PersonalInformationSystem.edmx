@@ -26,7 +26,7 @@
           <Property Name="CourseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseName" Type="nvarchar" MaxLength="50" />
           <Property Name="CourseDesc" Type="text" />
-          <Property Name="CoourseDuration" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CourseDuration" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Facilitator" Type="nvarchar" MaxLength="50" />
           <Property Name="CourseAmount" Type="money" />
           <Property Name="CreatedBy" Type="int" />
@@ -79,6 +79,7 @@
           </Key>
           <Property Name="StudentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="DateOfBirth" Type="date" />
@@ -87,6 +88,7 @@
           <Property Name="Gender" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResidenceNo" Type="nvarchar" MaxLength="50" />
           <Property Name="EnrolledDate" Type="datetime" />
           <Property Name="ComputerLiterate" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
@@ -290,7 +292,6 @@
       <Schema Namespace="PersonalInformationSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PersonalInformationSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Classes" EntityType="PersonalInformationSystemModel.Class" />
-          <EntitySet Name="CourseInfoes" EntityType="PersonalInformationSystemModel.CourseInfo" />
           <EntitySet Name="Payments" EntityType="PersonalInformationSystemModel.Payment" />
           <EntitySet Name="StudentCourseDetails" EntityType="PersonalInformationSystemModel.StudentCourseDetail" />
           <EntitySet Name="StudentInfoes" EntityType="PersonalInformationSystemModel.StudentInfo" />
@@ -304,10 +305,6 @@
           <AssociationSet Name="FK_StudentSubject_StudentClass" Association="PersonalInformationSystemModel.FK_StudentSubject_StudentClass">
             <End Role="Class" EntitySet="Classes" />
             <End Role="StudentSubject" EntitySet="StudentSubjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentCourseDetails_CourseInfo" Association="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo">
-            <End Role="CourseInfo" EntitySet="CourseInfoes" />
-            <End Role="StudentCourseDetail" EntitySet="StudentCourseDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_payment_StudentInfo" Association="PersonalInformationSystemModel.FK_payment_StudentInfo">
             <End Role="StudentInfo" EntitySet="StudentInfoes" />
@@ -329,6 +326,11 @@
             <End Role="StudentSubject" EntitySet="StudentSubjects" />
             <End Role="StudentQualification" EntitySet="StudentQualifications" />
           </AssociationSet>
+          <EntitySet Name="CourseInfoes" EntityType="PersonalInformationSystemModel.CourseInfo" />
+          <AssociationSet Name="FK_StudentCourseDetails_CourseInfo" Association="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo">
+            <End Role="CourseInfo" EntitySet="CourseInfoes" />
+            <End Role="StudentCourseDetail" EntitySet="StudentCourseDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Class">
           <Key>
@@ -345,25 +347,6 @@
           <Property Name="Status" Type="Boolean" />
           <NavigationProperty Name="StudentQualifications" Relationship="PersonalInformationSystemModel.FK_StudentQualification_StudentClass" FromRole="Class" ToRole="StudentQualification" />
           <NavigationProperty Name="StudentSubjects" Relationship="PersonalInformationSystemModel.FK_StudentSubject_StudentClass" FromRole="Class" ToRole="StudentSubject" />
-        </EntityType>
-        <EntityType Name="CourseInfo">
-          <Key>
-            <PropertyRef Name="CourseId" />
-          </Key>
-          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CourseDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="CoourseDuration" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Facilitator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CourseAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedBy" Type="Int32" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="DeletedBy" Type="Int32" />
-          <Property Name="DeletedOn" Type="DateTime" Precision="3" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="StudentCourseDetails" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" FromRole="CourseInfo" ToRole="StudentCourseDetail" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -401,8 +384,8 @@
           <Property Name="DeletedBy" Type="Int32" />
           <Property Name="DeletedOn" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="CourseInfo" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" FromRole="StudentCourseDetail" ToRole="CourseInfo" />
           <NavigationProperty Name="StudentInfo" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_StudentInfo" FromRole="StudentCourseDetail" ToRole="StudentInfo" />
+          <NavigationProperty Name="CourseInfo" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" FromRole="StudentCourseDetail" ToRole="CourseInfo" />
         </EntityType>
         <EntityType Name="StudentInfo">
           <Key>
@@ -410,6 +393,7 @@
           </Key>
           <Property Name="StudentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
@@ -417,6 +401,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResidenceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EnrolledDate" Type="DateTime" Precision="3" />
           <Property Name="ComputerLiterate" Type="Boolean" />
@@ -511,18 +496,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentCourseDetails_CourseInfo">
-          <End Type="PersonalInformationSystemModel.CourseInfo" Role="CourseInfo" Multiplicity="1" />
-          <End Type="PersonalInformationSystemModel.StudentCourseDetail" Role="StudentCourseDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourseInfo">
-              <PropertyRef Name="CourseId" />
-            </Principal>
-            <Dependent Role="StudentCourseDetail">
-              <PropertyRef Name="CourseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_payment_StudentInfo">
           <End Type="PersonalInformationSystemModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
           <End Type="PersonalInformationSystemModel.Payment" Role="Payment" Multiplicity="*" />
@@ -583,6 +556,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CourseInfo">
+          <Key>
+            <PropertyRef Name="CourseId" />
+          </Key>
+          <Property Name="CourseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CourseDuration" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Facilitator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CourseAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int32" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="Int32" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="StudentCourseDetails" Relationship="PersonalInformationSystemModel.FK_StudentCourseDetails_CourseInfo" FromRole="CourseInfo" ToRole="StudentCourseDetail" />
+        </EntityType>
+        <Association Name="FK_StudentCourseDetails_CourseInfo">
+          <End Type="PersonalInformationSystemModel.CourseInfo" Role="CourseInfo" Multiplicity="1" />
+          <End Type="PersonalInformationSystemModel.StudentCourseDetail" Role="StudentCourseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseInfo">
+              <PropertyRef Name="CourseId" />
+            </Principal>
+            <Dependent Role="StudentCourseDetail">
+              <PropertyRef Name="CourseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -601,25 +605,6 @@
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ClassName" ColumnName="ClassName" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CourseInfoes">
-            <EntityTypeMapping TypeName="PersonalInformationSystemModel.CourseInfo">
-              <MappingFragment StoreEntitySet="CourseInfo">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
-                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CourseAmount" ColumnName="CourseAmount" />
-                <ScalarProperty Name="Facilitator" ColumnName="Facilitator" />
-                <ScalarProperty Name="CoourseDuration" ColumnName="CoourseDuration" />
-                <ScalarProperty Name="CourseDesc" ColumnName="CourseDesc" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -664,6 +649,8 @@
           <EntitySetMapping Name="StudentInfoes">
             <EntityTypeMapping TypeName="PersonalInformationSystemModel.StudentInfo">
               <MappingFragment StoreEntitySet="StudentInfo">
+                <ScalarProperty Name="ResidenceNo" ColumnName="ResidenceNo" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
                 <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
@@ -735,6 +722,25 @@
                 <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
                 <ScalarProperty Name="ClassId" ColumnName="ClassId" />
                 <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseInfoes">
+            <EntityTypeMapping TypeName="PersonalInformationSystemModel.CourseInfo">
+              <MappingFragment StoreEntitySet="CourseInfo">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CourseAmount" ColumnName="CourseAmount" />
+                <ScalarProperty Name="Facilitator" ColumnName="Facilitator" />
+                <ScalarProperty Name="CourseDuration" ColumnName="CourseDuration" />
+                <ScalarProperty Name="CourseDesc" ColumnName="CourseDesc" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

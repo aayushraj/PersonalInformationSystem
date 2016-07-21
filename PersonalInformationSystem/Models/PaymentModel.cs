@@ -22,5 +22,6 @@ namespace PersonalInformationSystem.Models
         public int DeletedBy { get; set; }
         public DateTime DeletedOn { get; set; }
         public bool Status { get; set; }
+        public List<PaymentModel> PaymentModelList { get; set; }
     }
 }
